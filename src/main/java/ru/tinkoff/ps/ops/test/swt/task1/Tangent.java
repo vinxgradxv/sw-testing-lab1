@@ -43,11 +43,11 @@ public class Tangent {
 
     private static double fixPeriod(double x) {
         if (x >= 0) {
-            while (x >= Math.PI / 2 && x > 0) {
+            while (x >= Math.PI / 2) {
                 x -= Math.PI;
             }
         } else {
-            while (x <= - Math.PI / 2 && x < 0) {
+            while (x <= - Math.PI / 2) {
                 x += Math.PI;
             }
         }
@@ -62,7 +62,7 @@ public class Tangent {
             double sum = 0;
             for (int j = 0; j < k; j++) {
                 double term = bernoulliNumbers.get(j) * binomialCoefficient(k + 1, j);
-                sum = sum -= term;
+                sum -= term;
             }
             bernoulliNumbers.add(sum / (k + 1));
         }

@@ -22,6 +22,12 @@ public class TangentTest {
     }
 
     @ParameterizedTest
+    @MethodSource("valuesNearBreakpoints")
+    public void testValuesNearBreakpoints(double value) {
+        Assertions.assertNull(Tangent.calc(value, 55));
+    }
+
+    @ParameterizedTest
     @MethodSource("nonPiValues")
     public void testNonPiValues(double value) {
         Assertions.assertEquals(Math.tan(value), Tangent.calc(value, 50), 0.0001);
@@ -32,6 +38,15 @@ public class TangentTest {
                 Arguments.of(Math.PI / 2, 10));
     }
 
+    private static Stream<Arguments> valuesNearBreakpoints() {
+        double epsilon = 1E-10;
+        return Stream.of(
+                Arguments.of(Math.PI / 2 - epsilon),
+                Arguments.of(-Math.PI / 2 + epsilon),
+                Arguments.of(Math.PI / 2 + epsilon),
+                Arguments.of(-Math.PI / 2 - epsilon)
+        );
+    }
 
     private static Stream<Arguments> PiValues() {
         return Stream.of(Arguments.of(0), Arguments.of(Math.PI), Arguments.of(-Math.PI),
@@ -40,8 +55,8 @@ public class TangentTest {
 
     private static Stream<Arguments> nonPiValues() {
         return Stream.of(Arguments.of(Math.PI / 8), Arguments.of(Math.PI / 5), Arguments.of(Math.PI / 4),
-                Arguments.of(9 * Math.PI / 8), Arguments.of(6 * Math.PI / 5), Arguments.of(5 * Math.PI / 4),
-                Arguments.of(-Math.PI / 8), Arguments.of(-Math.PI / 5), Arguments.of(-Math.PI / 4),
+                Arguments.of(-Math.PI / 4), Arguments.of(9 * Math.PI / 8), Arguments.of(6 * Math.PI / 5),
+                Arguments.of(5 * Math.PI / 4), Arguments.of(-Math.PI / 8), Arguments.of(-Math.PI / 5), Arguments.of(-Math.PI / 4),
                 Arguments.of(-9 * Math.PI / 8), Arguments.of(-6 * Math.PI / 5), Arguments.of(-5 * Math.PI / 4));
     }
 }
