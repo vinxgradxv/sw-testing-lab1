@@ -2,6 +2,7 @@ package ru.tinkoff.ps.ops.test.swt.task3;
 
 import lombok.AllArgsConstructor;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,18 @@ public class Screen {
     private Map<ScreenObject, Coordinates> objectCoordinates;
     private int width;
     private int height;
+
+    public Map<ScreenObject, Coordinates> getObjectCoordinates() {
+        return new HashMap<>(objectCoordinates);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 
     public void setSize(int height, int width) {
         if (height <= 0 || width <= 0) {

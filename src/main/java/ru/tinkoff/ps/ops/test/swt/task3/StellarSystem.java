@@ -22,7 +22,7 @@ public class StellarSystem{
         return stars.remove(star);
     }
 
-    private int getStarsCount() {
+    public int getStarsCount() {
         return stars.size();
     }
 }

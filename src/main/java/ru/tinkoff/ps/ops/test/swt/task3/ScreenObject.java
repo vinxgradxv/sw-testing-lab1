@@ -19,12 +19,20 @@ public abstract class ScreenObject {
         return true;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     public boolean setBrightness(int brightness) {
         if (brightness <= 0) {
             return false;
         }
         this.brightness = brightness;
         return true;
+    }
+
+    public int getBrightness() {
+        return brightness;
     }
 
     public void setName(String name) {

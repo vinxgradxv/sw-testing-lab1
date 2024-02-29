@@ -8,4 +8,12 @@ import java.util.List;
 public class PlanetSystem{
     private Star star;
     private List<Planet> planets;
+
+    public Star getStar() {
+        return star;
+    }
+
+    public List<Planet> getPlanets() {
+        return planets;
+    }
 }

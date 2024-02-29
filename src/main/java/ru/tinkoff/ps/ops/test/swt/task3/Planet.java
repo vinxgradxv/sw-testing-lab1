@@ -7,4 +7,8 @@ import lombok.Setter;
 @Setter
 public class Planet extends ScreenObject{
     boolean isPopulated;
+
+    public boolean isPopulated() {
+        return isPopulated;
+    }
 }

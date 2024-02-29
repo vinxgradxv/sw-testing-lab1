@@ -22,4 +22,12 @@ public class Star extends ScreenObject{
         this.color = color;
         return true;
     }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public Color getColor() {
+        return color;
+    }
 }
