@@ -9,28 +9,32 @@ import java.util.stream.Stream;
 
 public class TangentTest {
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Вычисление тангенса для значений кратных Pi, а именно {0}")
     @MethodSource("PiValues")
     public void testPiValues(double value) {
-        Assertions.assertEquals(0, Tangent.calc(value, 50), 0.0001);
+        var result = Tangent.calc(value, 50);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(0, result, 0.0001);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Вычисление тангенса для некорректных значений, а именно x = {0}, n = {1}")
     @MethodSource("invalidValues")
     public void testInvalidNs(double x, int n) {
         Assertions.assertNull(Tangent.calc(x, n));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Вычисление тангенса для значений близких к Pi/2, а именно {0}")
     @MethodSource("valuesNearBreakpoints")
     public void testValuesNearBreakpoints(double value) {
         Assertions.assertNull(Tangent.calc(value, 55));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Вычисление тангенса для значений из области определения функции, а именно {0}")
     @MethodSource("nonPiValues")
     public void testNonPiValues(double value) {
-        Assertions.assertEquals(Math.tan(value), Tangent.calc(value, 50), 0.0001);
+        var result = Tangent.calc(value, 50);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(Math.tan(value), result, 0.0001);
     }
 
     private static Stream<Arguments> invalidValues() {

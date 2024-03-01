@@ -2,6 +2,7 @@ package ru.tinkoff.ps.ops.test.swt.task3;
 import java.util.Arrays;
 import java.util.HashMap;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,24 +23,28 @@ class ScreenTest {
     }
 
     @Test
+    @DisplayName("Добавление объекта на экран")
     void testAddObjectSuccess() {
         assertTrue(screen.addObject(planet1, 10, 10), "Should successfully add a planet");
         assertTrue(screen.addObject(star1, 20, 20), "Should successfully add a star");
     }
 
     @Test
+    @DisplayName("Добавление на экран объектов с некорректными координатами")
     void testAddObjectInvalidCoordinates() {
         assertFalse(screen.addObject(planet1, -1, 10), "Should not add object with negative X coordinate");
         assertFalse(screen.addObject(star1, 10, -1), "Should not add object with negative Y coordinate");
     }
 
     @Test
+    @DisplayName("Добавление на экран объекта с координатами, на которых уже находится объект")
     void testAddObjectToOccupiedSpace() {
         screen.addObject(planet1, 30, 30);
         assertFalse(screen.addObject(star1, 30, 30), "Should not add object to already occupied coordinates");
     }
 
     @Test
+    @DisplayName("Добавление на экран объекта с координатами, на которых уже находится объект")
     void testRemoveObjectByInstance() {
         screen.addObject(planet1, 40, 40);
         assertTrue(screen.removeObject(planet1), "Should successfully remove the object by instance");
@@ -47,6 +52,7 @@ class ScreenTest {
     }
 
     @Test
+    @DisplayName("Удаление объекта с экрана")
     void testRemoveObjectByCoordinates() {
         screen.addObject(star1, 50, 50);
         assertTrue(screen.removeObject(50, 50), "Should successfully remove the object by coordinates");
@@ -54,6 +60,7 @@ class ScreenTest {
     }
 
     @Test
+    @DisplayName("Успешное изменение размеров экрана")
     void testReduceScreenSizeMovesObjectsWithinBounds() {
         screen.addObject(planet1, 95, 95);
         screen.addObject(star1, 10, 10);
@@ -68,6 +75,7 @@ class ScreenTest {
     }
 
     @Test
+    @DisplayName("Изменение размеров экрана на некорректные величины")
     void testSetSizeWithInvalidValuesDoesNotChangeSize() {
         screen.setSize(-10, -10);
 
